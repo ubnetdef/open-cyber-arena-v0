@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  app:
+    build: .
+    image: ubnetdef/open-cyber-arena
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      ALLOWED_HOSTS: "${ALLOWED_HOSTS:-*}"
+      DATABASE_URL: "postgres://postgres:${DATABASE_PASSWORD}@db:5432/arena"
+      DEBUG: "${DEBUG:-true}"
+      VCENTER_HOST: "${VCENTER_HOST}"
+      VCENTER_PORT: "${VCENTER_PORT}"
+      VCENTER_USER: "${VCENTER_USER}"
+      VCENTER_PASS: "${VCENTER_PASS}"
+    ports:
+      - "8000:8000"
+    volumes:
+      - app_static:/opt/arena/static/dist
+      - ./static/src:/opt/arena/static/src:ro
+      - ./arena:/opt/arena/arena:ro
+  db:
+    image: postgres:11.3-alpine
+    environment:
+      POSTGRES_DB: arena
+      POSTGRES_PASSWORD: "${DATABASE_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  nginx:
+    image: nginx:1.15-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - app_static:/opt/arena/static
+
+volumes:
+  app_static:
+  db_data:

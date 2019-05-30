@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Cyber Arena</title>
+  <link rel="icon" href="https://www.buffalo.edu/favicon.ico">
+  <link rel="stylesheet" href="{% static 'WebMKS_SDK_2.1.0/css/wmks-all.css' %}">
+  <link rel="stylesheet" href="{% static 'oca/ui.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+  <header>
+    <div id="logo"></div>
+    <div id="title">Open Cyber Arena</div>
+    <div>
+      {% if user.is_authenticated %}
+      <a href="/admin/logout/?next=/">Log out</a>
+      {% else %}
+      <a href="/admin/login/?next=/">Log in</a>
+      {% endif %}
+    </div>
+  </header>
+  <div id="wrapper">
+    <nav>
+    </nav>
+    <main>
+      <div id="details">
+        <div id="vm-name"></div>
+        <dl>
+          <dt>CPUs</dt>
+          <dd id="vm-cpus"></dd>
+          <dt>RAM</dt>
+          <dd id="vm-ram"></dd>
+          <dt>IP address</dt>
+          <dd id="vm-ip"></dd>
+        </dl>
+        <div id="actions">
+          <a onclick="setPowerState('on')">
+            <i class="material-icons">play_arrow</i>
+          </a>
+          <a onclick="setPowerState('suspend')">
+            <i class="material-icons">pause</i>
+          </a>
+          <a onclick="setPowerState('off')">
+            <i class="material-icons">stop</i>
+          </a>
+          <!-- <i class="material-icons">camera_alt</i> -->
+        </div>
+      </div>
+      <div id="console"></div>
+    </main>
+  </div>
+  </main>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.8.16/jquery-ui.min.js"></script>
+  <script src="{% static 'WebMKS_SDK_2.1.0/wmks.min.js' %}"></script>
+  <script src="{% static 'oca/ui.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  margin: 0;
+}
+
+header {
+  align-items: center;
+  background-color: #005bbb;
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+  color: white;
+  display: flex;
+  padding: .5rem 1rem;
+  z-index: 1;
+}
+header #logo {
+  background-position: center center;
+  background-image: url(/static/ub/logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 2rem;
+  margin-right: 1rem;
+  width: 2.5rem;
+}
+header #title {
+  flex-grow: 1;
+  font-size: 1.5rem;
+}
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+#wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+nav {
+  background-color: #e4e4e4;
+  padding: 1rem;
+  max-width: 12.5rem;
+  min-width: 10rem;
+}
+nav li {
+  cursor: pointer;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+main #details {
+  background-color: #e4e4e4;
+  display: none;
+  justify-content: space-between;
+  padding: 1rem 1rem .5rem;
+}
+main #vm-name {
+  font-weight: bold;
+}
+
+main dl {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+main dl dt::after {
+  content: ":";
+}
+main dl dd {
+  margin-inline-start: .5rem;
+  margin-inline-end: 1rem;
+}
+
+main #actions {
+  font-weight: bold;
+}
+main #actions > *:hover {
+  cursor: pointer;
+}
+
+main #console {
+  position: relative;
+  flex-grow: 1;
+}
